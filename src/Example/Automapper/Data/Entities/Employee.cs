@@ -7,7 +7,7 @@ namespace Data.Models
     public class Employee : IEmployee
     {
         [Required]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int? Salary { get; set; }

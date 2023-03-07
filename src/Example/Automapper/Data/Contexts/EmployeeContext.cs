@@ -8,7 +8,7 @@ namespace Data.Contexts
 {
 	public class EmployeeContext : DbContext
 	{
-		public EmployeeContext() : base("EmployeeContext")
+		public EmployeeContext()
 		{
 
 		}
