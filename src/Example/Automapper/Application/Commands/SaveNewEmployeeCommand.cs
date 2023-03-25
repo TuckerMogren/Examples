@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace Application.Commands
 {
-	public class SaveNewEmployeeCommand : IRequest<Unit>
+	public class SaveNewEmployeeCommand : IRequest
     {
         public EmployeeDto employeeDto { get; private set; }
 

@@ -13,10 +13,12 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Contexts\" />
     <None Remove="EntityFramework" />
+    <None Remove="SQLTableCreateStatements\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Contexts\" />
+    <Folder Include="SQLTableCreateStatements\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
