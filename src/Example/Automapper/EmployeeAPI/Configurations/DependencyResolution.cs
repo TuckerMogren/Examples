@@ -11,7 +11,7 @@ namespace EmployeeAPI.Configurations
 		public static void ConfigureData(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddDbContext<EmployeeContext>(opts =>
-				opts.UseSqlServer(configuration.GetConnectionString("Employee"))
+				opts.UseSqlServer(configuration.GetConnectionString("Data"))
 
 
 			);

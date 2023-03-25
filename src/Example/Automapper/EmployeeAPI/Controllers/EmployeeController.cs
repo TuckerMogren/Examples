@@ -41,9 +41,7 @@ public class EmployeeController : ControllerBase
 
         var savecmd = new SaveNewEmployeeCommand(emp);
         await _mediatr.Send(savecmd, cancellationToken);
-        
-
-        //Do something with the data
+       
 
         return Ok(emp);
     }
