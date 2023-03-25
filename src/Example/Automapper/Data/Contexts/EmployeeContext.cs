@@ -20,7 +20,7 @@ namespace Data.Contexts
             base.OnModelCreating(model);
             model.Entity<Employee>(e =>
             {
-                e.ToTable("Emoloyees");
+                e.ToTable("Emoloyee");
                 e.HasKey(e => e.Id);
                 e.Property(e => e.Id).IsRequired();
             });

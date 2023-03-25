@@ -24,7 +24,7 @@ namespace Persistence.Repositories
         public async Task<EmployeeDto> GetEmployeeByID(int? id)
         {
 
-            var results = await _db.Employees.SingleOrDefaultAsync(x => x.Id == id);
+            var results = await _db.Employees.SingleOrDefaultAsync(x => x.FirstName == "Tucker");
 
             var data = _mapper.Map<EmployeeDto>(results);
 
