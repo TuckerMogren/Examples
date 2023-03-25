@@ -1,7 +1,10 @@
-﻿using Data.Models;
-using Domain.DTOModels;
+﻿using Domain.DTOModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Interfaces.Repositories;
+using Application.Commands;
+using Application.Queries;
+using MediatR;
 
 namespace EmployeeAPI.Controllers;
 
@@ -13,11 +16,15 @@ public class EmployeeController : ControllerBase
 
     private readonly ILogger<EmployeeController> _logger;
     private readonly IMapper _mapper;
+    private readonly IEmployeeRepository _repo;
+    private readonly IMediator _mediatr;
 
-    public EmployeeController(ILogger<EmployeeController> logger, IMapper mapper)
+    public EmployeeController(ILogger<EmployeeController> logger, IMapper mapper, IEmployeeRepository repo, IMediator mediator)
     {
-        _logger = logger;
-        _mapper = mapper
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+        _mediatr = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
 
@@ -34,7 +41,9 @@ public class EmployeeController : ControllerBase
         }
 
 
-        var data = _mapper.Map<Employee>(emp);
+        var savecmd = new SaveNewEmployeeCommand(emp);
+        await _mediatr.Send(savecmd, cancellationToken);
+        
 
         //Do something with the data
 
@@ -52,10 +61,8 @@ public class EmployeeController : ControllerBase
         {
             return BadRequest();
         }
-
-
-
-        var data = _mapper.Map<EmployeeDto>(emp);
+        var query = new GetEmployeeQuery();
+        await _mediatr.Send(query, cancellationToken);
 
         return Ok(emp);
     }
