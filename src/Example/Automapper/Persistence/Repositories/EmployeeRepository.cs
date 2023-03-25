@@ -5,6 +5,7 @@ using Domain.DTOModels;
 using Domain.Interfaces;
 using Domain.Interfaces.Repositories;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
@@ -13,19 +14,24 @@ namespace Persistence.Repositories
 
         private readonly EmployeeContext _db;
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
 
-		public EmployeeRepository(EmployeeContext db, ILogger logger, IMapper mapper) 
+		public EmployeeRepository(EmployeeContext db, IMapper mapper) 
 		{
             _db = db ?? throw new ArgumentNullException(nameof(db));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Task<EmployeeDto> GetEmployeeByID(int id)
+        public async Task<EmployeeDto> GetEmployeeByID(int? id)
         {
-            throw new NotImplementedException();
+
+            var results = await _db.Employees.SingleOrDefaultAsync(x => x.Id == id);
+
+            var data = _mapper.Map<EmployeeDto>(results);
+
+            return data;
         }
+
+
 
         public async Task SaveEmployeeAsync(IEmployeeDTO data)
         {

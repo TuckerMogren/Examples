@@ -2,6 +2,7 @@
 using AutoMapper;
 using Data.Models;
 using Domain.DTOModels;
+using Domain.Interfaces;
 
 namespace EmployeeAPI.Configurations
 { 
@@ -34,6 +35,13 @@ namespace EmployeeAPI.Configurations
                 mc.CreateMap<EmployeeDto, Employee>()
                     .ForMember(emp => emp.Id, act => act.Ignore())
                     .ForMember(emp => emp.FirstName, act => act.MapFrom(x => string.IsNullOrEmpty(x.FullName) ? "": x.FullName.Split()[0]))
+                    .ForMember(emp => emp.LastName, act => act.MapFrom(x => string.IsNullOrEmpty(x.FullName) ? "" : x.FullName.Split()[1]))
+                    .ForMember(emp => emp.Department, act => act.MapFrom(src => src.Dept))
+                    .ReverseMap();
+
+                mc.CreateMap<IEmployeeDTO, Employee>()
+                    .ForMember(emp => emp.Id, act => act.Ignore())
+                    .ForMember(emp => emp.FirstName, act => act.MapFrom(x => string.IsNullOrEmpty(x.FullName) ? "" : x.FullName.Split()[0]))
                     .ForMember(emp => emp.LastName, act => act.MapFrom(x => string.IsNullOrEmpty(x.FullName) ? "" : x.FullName.Split()[1]))
                     .ForMember(emp => emp.Department, act => act.MapFrom(src => src.Dept))
                     .ReverseMap();

@@ -29,8 +29,6 @@ public class EmployeeController : ControllerBase
 
 
     [HttpPost("AddEmployee")]
-    //public async Task<ActionResult>
-    //TODO: Automapper, this will add an employee to the database. 
     public async Task<ActionResult> AddEmployee([FromBody] EmployeeDto emp, CancellationToken cancellationToken = default)
     {
         
@@ -51,20 +49,18 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("GetEmployee")]
-    //public async Task<ActionResult>
-    //TODO: Automapper, this will add an employee to the database. 
-    public async Task<ActionResult> GetEmployee([FromBody] EmployeeDto emp, CancellationToken cancellationToken)
+    public async Task<ActionResult> GetEmployee([FromQuery] int? id, CancellationToken cancellationToken)
     {
 
 
-        if (emp == null)
+        if (id == null)
         {
             return BadRequest();
         }
-        var query = new GetEmployeeQuery();
+        var query = new GetEmployeeQuery(id);
         await _mediatr.Send(query, cancellationToken);
 
-        return Ok(emp);
+        return Ok(query);
     }
 
 }

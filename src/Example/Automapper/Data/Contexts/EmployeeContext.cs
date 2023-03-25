@@ -10,7 +10,7 @@ namespace Data.Contexts
 
         public DbSet<Employee> Employees { get; set; }
 
-        public EmployeeContext()
+        public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options)
         {
 
         }
