@@ -22,9 +22,12 @@ public class TestController : ControllerBase
 
 
     [HttpPost("TestConfiguration")]
-    public string Config(CancellationToken cancellationToken = default)
+    public string Config()
     {
+        
         var data = _config.GetConnectionString("Employee");
+
+        _logger.LogDebug($"Getting Connection String for Employee DB: {data}");
 
         return data ?? "NO DATA";
     }

@@ -9,9 +9,13 @@
   <ItemGroup>
     <None Remove="DTOModels\" />
     <None Remove="Interfaces\" />
+    <None Remove="Interfaces\Repositories\" />
+    <None Remove="Interfaces\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTOModels\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="Interfaces\Settings\" />
   </ItemGroup>
 </Project>
