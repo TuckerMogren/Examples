@@ -17,7 +17,7 @@ public class EmployeeController : ControllerBase
     public EmployeeController(ILogger<EmployeeController> logger, IMapper mapper)
     {
         _logger = logger;
-        _mapper = mapper;
+        _mapper = mapper
     }
 
 
