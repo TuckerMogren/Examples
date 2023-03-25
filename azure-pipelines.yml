@@ -5,6 +5,7 @@
 
 trigger:
 - dev
+- main
 
 pool:
   vmImage: 'windows-latest'
@@ -16,11 +17,14 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  displayName: 'install nuget version'
 
 - task: NuGetCommand@2
+  displayName: 'nuget restore'
   inputs:
     restoreSolution: '$(solution)'
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
   inputs:
     command: 'restore'
     projects: '$(solution)'
@@ -28,6 +32,7 @@ steps:
     vstsFeed: '5224cc88-934d-4d8c-9915-08fefbe32aaa'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '$(solution)'
