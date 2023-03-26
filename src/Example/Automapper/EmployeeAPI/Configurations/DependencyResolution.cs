@@ -12,9 +12,11 @@ namespace EmployeeAPI.Configurations
 		{
 			services.AddDbContext<EmployeeContext>(opts =>
 				opts.UseSqlServer(configuration.GetConnectionString("Data"))
-
-
 			);
+
+			var test = configuration.GetConnectionString("Data");
+
+			Console.WriteLine(test);
 
 		}
 	}
