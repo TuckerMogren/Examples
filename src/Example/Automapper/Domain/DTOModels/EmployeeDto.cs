@@ -6,9 +6,8 @@ namespace Domain.DTOModels
 {
 	public class EmployeeDto : IEmployeeDTO
     {
-        public EmployeeDto(string fullName)
+        public EmployeeDto()
         {
-            FullName = fullName;
         }
 
         public string? FullName { get; set; }

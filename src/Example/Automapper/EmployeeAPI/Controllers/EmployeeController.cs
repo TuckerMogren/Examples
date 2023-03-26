@@ -5,6 +5,7 @@ using Domain.Interfaces.Repositories;
 using Application.Commands;
 using Application.Queries;
 using MediatR;
+using Data.Models;
 
 namespace EmployeeAPI.Controllers;
 
@@ -51,18 +52,21 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("GetEmployee")]
-    public async Task<ActionResult> GetEmployee([FromQuery] int? id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetEmployee([FromQuery] int? id, CancellationToken cancellationToken)
     {
-
 
         if (id == null)
         {
             return BadRequest();
         }
-        var query = new GetEmployeeQuery(id);
-        await _mediatr.Send(query, cancellationToken);
 
-        return Ok(query);
+        await _repo.GetEmployeeByID(id);
+
+        //Map from employeeDTO to employee 
+        //var query = new GetEmployeeQuery(data);
+        //await _mediatr.Send(query, cancellationToken);
+
+        return Ok();
     }
 
 }
