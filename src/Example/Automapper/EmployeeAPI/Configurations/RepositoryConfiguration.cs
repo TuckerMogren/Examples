@@ -17,7 +17,7 @@ namespace EmployeeAPI.Configurations
 			services.AddTransient<IEmployeeRepository,EmployeeRepository>();
             services.AddTransient(typeof(IEmployeeRepository), typeof(EmployeeRepository));
             services.AddTransient<IRequestHandler<SaveNewEmployeeCommand, Unit>, SaveNewEmployeeCommand.Handler>();
-			//services.AddTransient<IRequestHandler<GetEmployeeQuery, Unit>, GetEmployeeQuery.Handler>();
+			services.AddTransient<IRequestHandler<GetEmployeeQuery, Unit>, GetEmployeeQuery.Handler>();
 		}
 	}
 

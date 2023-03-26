@@ -1,20 +1,22 @@
-﻿using Domain.DTOModels;
+﻿using Data.Models;
+using Domain.DTOModels;
 using Domain.Interfaces.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Queries
 {
-	public class GetEmployeeQuery : IRequest<EmployeeDto>
+	public class GetEmployeeQuery : IRequest<Unit>
 	{
 
-        public int? _id { get; private set; }
+        //public int? _id { get; private set; }
+        public Employee _emp { get; private set; }
 
-        public GetEmployeeQuery(int? id)
+        public GetEmployeeQuery(Employee emp)
         {
-            _id = id ?? throw new ArgumentNullException(nameof(id));
+            _emp = emp ?? throw new ArgumentNullException(nameof(emp));
         }
-        public class Handler : IRequestHandler<GetEmployeeQuery, EmployeeDto>
+        public class Handler : IRequestHandler<GetEmployeeQuery, Unit>
         {
             readonly IEmployeeRepository _employeeRepo;
             readonly ILogger _logger;
@@ -26,20 +28,21 @@ namespace Application.Queries
                 _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             }
 
-            public Task<EmployeeDto> Handle(GetEmployeeQuery request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(GetEmployeeQuery request, CancellationToken cancellationToken)
             {
                 try
                 {
-                    _logger.LogInformation("Saving new Employee - Handle {EmployeeID}", request._id);
+                    _logger.LogInformation("Saving new Employee - Handle {EmployeeID}", request._emp.ID);
 
 
-                    var results =  _employeeRepo.GetEmployeeByID(request._id);
-                    return results;
+                    await _employeeRepo.GetEmployeeByID(request._emp.ID);
                 }
                 catch (Exception e)
                 {
                     throw new Exception(e.Message, e.InnerException);
                 }
+
+                return Unit.Value;
             }
 
 

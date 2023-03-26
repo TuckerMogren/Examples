@@ -5,7 +5,7 @@ namespace Domain.Interfaces.Repositories
 	{
 
         Task SaveEmployeeAsync(IEmployeeDTO data);
-        Task<EmployeeDto> GetEmployeeByID(int? id);
+        Task GetEmployeeByID(int? id);
 
 		
 	}
