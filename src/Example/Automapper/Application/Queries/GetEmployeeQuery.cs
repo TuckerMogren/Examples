@@ -10,11 +10,13 @@ namespace Application.Queries
 	{
 
         //public int? _id { get; private set; }
-        public Employee _emp { get; private set; }
+        public EmployeeDto _emp { get; private set; }
+        public int? _id { get; private set; }
 
-        public GetEmployeeQuery(Employee emp)
+        public GetEmployeeQuery(EmployeeDto emp, int? id)
         {
             _emp = emp ?? throw new ArgumentNullException(nameof(emp));
+            _id = id ?? throw new ArgumentNullException(nameof(id));
         }
         public class Handler : IRequestHandler<GetEmployeeQuery, Unit>
         {
@@ -32,10 +34,10 @@ namespace Application.Queries
             {
                 try
                 {
-                    _logger.LogInformation("Saving new Employee - Handle {EmployeeID}", request._emp.ID);
+                    _logger.LogInformation("Saving new Employee - Handle {EmployeeID}", request._id);
 
 
-                    await _employeeRepo.GetEmployeeByID(request._emp.ID);
+                    await _employeeRepo.GetEmployeeByID(request._id);
                 }
                 catch (Exception e)
                 {
