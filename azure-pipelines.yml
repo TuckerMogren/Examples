@@ -37,3 +37,10 @@ steps:
     command: 'build'
     projects: '$(solution)'
 
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Tucker Sub(d648f3e6-1c30-49fe-a258-edf5e03f9361)'
+    appType: 'webApp'
+    appName: 'TuckerAPIS'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
