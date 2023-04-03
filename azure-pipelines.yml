@@ -31,12 +31,13 @@ steps:
     feedsToUse: 'select'
     vstsFeed: '5224cc88-934d-4d8c-9915-08fefbe32aaa'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
-  inputs:
-    command: 'build'
-    projects: '$(solution)'
 
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Tucker Sub(d648f3e6-1c30-49fe-a258-edf5e03f9361)'
