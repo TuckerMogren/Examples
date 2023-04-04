@@ -23,6 +23,7 @@ env:
   AZURE_WEBAPP_NAME: TuckerAPIS    # set this to the name of your Azure Web App
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '7.0.*'                 # set this to the .NET Core version to use
+  SOLUTION_PATH: 'src/Example/Automapper/TestForAutoMapperAndAdapters.sln'
 
 on:
   push:
@@ -52,9 +53,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget
       - name: Build
-        run: dotnet build ${{env.AZURE_WEBAPP_PACKAGE_PATH}} --configuration Release  
+        run: dotnet build ${{env.SOLUTION_PATH}} --configuration Release  
       - name: dotnet publish
-        run: dotnet publish ${{env.AZURE_WEBAPP_PACKAGE_PATH}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ${{env.SOLUTION_PATH}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
