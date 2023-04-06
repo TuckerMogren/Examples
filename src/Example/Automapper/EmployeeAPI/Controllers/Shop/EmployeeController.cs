@@ -7,8 +7,9 @@ using Application.Queries;
 using MediatR;
 using Data.Models;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
-namespace EmployeeAPI.Controllers;
+namespace EmployeeAPI.Shop.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -33,7 +34,8 @@ public class EmployeeController : ControllerBase
 
 
     [HttpPost("AddEmployee")]
-    public async Task<ActionResult> AddEmployee([FromBody] EmployeeDto emp, CancellationToken cancellationToken = default)
+    [Authorize]
+    public async Task<ActionResult> AddEmployee([FromBody] EmployeeDTO emp, CancellationToken cancellationToken = default)
     {
         
 
@@ -53,7 +55,8 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("GetEmployee")]
-    public async Task<IActionResult> GetEmployee([FromQuery][Required] int? id, [FromQuery] EmployeeDto emp, CancellationToken cancellationToken)
+    [Authorize]
+    public async Task<IActionResult> GetEmployee([FromQuery][Required] int? id, [FromQuery] EmployeeDTO emp, CancellationToken cancellationToken)
     {
 
         if (id == null || emp == null)

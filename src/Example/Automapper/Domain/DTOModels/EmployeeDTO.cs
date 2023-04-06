@@ -4,11 +4,8 @@ using Domain.Interfaces;
 
 namespace Domain.DTOModels
 {
-	public class EmployeeDto : IEmployeeDTO
+	public class EmployeeDTO : IEmployeeDTO
     {
-        public EmployeeDto()
-        {
-        }
 
         public string? FullName { get; set; }
         public int? Salary { get; set; }

@@ -4,8 +4,8 @@ namespace Domain.Interfaces.Repositories
 	public interface IEmployeeRepository
 	{
 
-        Task SaveEmployeeAsync(IEmployeeDTO data);
-        Task GetEmployeeByID(int? id);
+        public Task SaveEmployeeAsync(IEmployeeDTO data);
+    	public Task<EmployeeDTO?> GetEmployeeByIDAsync (int? id);
 
 		
 	}

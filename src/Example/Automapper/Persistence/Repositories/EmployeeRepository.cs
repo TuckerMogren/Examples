@@ -9,26 +9,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
+
 	public class EmployeeRepository : IEmployeeRepository
     {
 
         private readonly EmployeeContext _db;
         private readonly IMapper _mapper;
 
-		public EmployeeRepository(EmployeeContext db, IMapper mapper) 
+        public EmployeeRepository(EmployeeContext db, IMapper mapper) 
 		{
             _db = db ?? throw new ArgumentNullException(nameof(db));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task GetEmployeeByID(int? id)
+        public async Task<EmployeeDTO?> GetEmployeeByIDAsync(int? id)
         {
-
             var results = await _db.Employees.SingleOrDefaultAsync(x => x.ID == id);
 
-            var data = _mapper.Map<EmployeeDto>(results);
+            if (results == null)
+            {
+                return null;
+            }
 
-            Console.WriteLine(data);
+            var data = _mapper.Map<EmployeeDTO>(results);
+            return data;
         }
 
 
@@ -51,6 +55,8 @@ namespace Persistence.Repositories
 
 
         }
+
+
     }
 }
 
