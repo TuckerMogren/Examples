@@ -10,10 +10,10 @@ namespace Application.Queries
 	{
 
         //public int? _id { get; private set; }
-        public EmployeeDto _emp { get; private set; }
+        public EmployeeDTO _emp { get; private set; }
         public int? _id { get; private set; }
 
-        public GetEmployeeQuery(EmployeeDto emp, int? id)
+        public GetEmployeeQuery(EmployeeDTO emp, int? id)
         {
             _emp = emp ?? throw new ArgumentNullException(nameof(emp));
             _id = id ?? throw new ArgumentNullException(nameof(id));
@@ -37,7 +37,7 @@ namespace Application.Queries
                     _logger.LogInformation("Saving new Employee - Handle {EmployeeID}", request._id);
 
 
-                    await _employeeRepo.GetEmployeeByID(request._id);
+                    await _employeeRepo.GetEmployeeByIDAsync(request._id);
                 }
                 catch (Exception e)
                 {

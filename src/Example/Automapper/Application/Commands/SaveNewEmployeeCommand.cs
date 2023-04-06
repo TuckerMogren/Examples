@@ -8,9 +8,9 @@ namespace Application.Commands
 {
 	public class SaveNewEmployeeCommand : IRequest
     {
-        public EmployeeDto employeeDto { get; private set; }
+        public EmployeeDTO employeeDto { get; private set; }
 
-		public SaveNewEmployeeCommand(EmployeeDto dto) 
+		public SaveNewEmployeeCommand(EmployeeDTO dto) 
 		{
             employeeDto = dto ?? throw new ArgumentNullException(nameof(dto));
 		}
