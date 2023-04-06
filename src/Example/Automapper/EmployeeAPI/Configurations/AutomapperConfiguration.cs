@@ -28,14 +28,14 @@ namespace EmployeeAPI.Configurations
                 mc.CreateMap<Int32, Employee>()
                 .ForMember(x => x.ID, y => y.MapFrom(z => z));
 
-                mc.CreateMap<Employee, EmployeeDto>()
+                mc.CreateMap<Employee, EmployeeDTO>()
                     .ForMember(dto => dto.Dept, act => act
                         .MapFrom(src => src.Department))
                     .ForMember(dto => dto.FullName, act => act
                         .MapFrom(mapExpression: src => string.Concat(src.firstName, " ", src.lastName)))
                     .ReverseMap();
 
-                mc.CreateMap<EmployeeDto, Employee>()
+                mc.CreateMap<EmployeeDTO, Employee>()
                     .ForMember(emp => emp.ID, act => act.Ignore())
                     .ForMember(emp => emp.firstName, act => act.MapFrom(x => string.IsNullOrEmpty(x.FullName) ? "": x.FullName.Split()[0]))
                     .ForMember(emp => emp.lastName, act => act.MapFrom(x => string.IsNullOrEmpty(x.FullName) ? "" : x.FullName.Split()[1]))
