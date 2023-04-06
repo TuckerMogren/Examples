@@ -22,19 +22,14 @@ namespace Persistence.Repositories
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        // create a new method that returns -1
         public async Task<EmployeeDTO?> GetEmployeeByIDAsync(int? id)
         {
             var results = await _db.Employees.SingleOrDefaultAsync(x => x.ID == id);
 
-<<<<<<< HEAD
             if (results == null)
             {
                 return null;
             }
-=======
-            var results = await _db.Employees.SingleOrDefaultAsync(x => x.ID == id);
->>>>>>> 97d1afd366559752366b903359d255edb19fa7dc
 
             var data = _mapper.Map<EmployeeDTO>(results);
             return data;
