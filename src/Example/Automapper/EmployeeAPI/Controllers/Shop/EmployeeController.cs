@@ -9,7 +9,7 @@ using Data.Models;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EmployeeAPI.Shop.Controllers;
+namespace ShopAPI.Shop.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -34,7 +34,6 @@ public class EmployeeController : ControllerBase
 
 
     [HttpPost("AddEmployee")]
-    [Authorize]
     public async Task<ActionResult> AddEmployee([FromBody] EmployeeDTO emp, CancellationToken cancellationToken = default)
     {
         
@@ -50,7 +49,6 @@ public class EmployeeController : ControllerBase
         var savecmd = new SaveNewEmployeeCommand(emp);
         await _mediatr.Send(savecmd, cancellationToken);
        
-
         return Ok(emp);
     }
 
