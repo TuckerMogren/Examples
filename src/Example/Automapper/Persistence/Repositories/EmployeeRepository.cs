@@ -27,10 +27,14 @@ namespace Persistence.Repositories
         {
             var results = await _db.Employees.SingleOrDefaultAsync(x => x.ID == id);
 
+<<<<<<< HEAD
             if (results == null)
             {
                 return null;
             }
+=======
+            var results = await _db.Employees.SingleOrDefaultAsync(x => x.ID == id);
+>>>>>>> 97d1afd366559752366b903359d255edb19fa7dc
 
             var data = _mapper.Map<EmployeeDTO>(results);
             return data;
