@@ -31,9 +31,13 @@ steps:
     feedsToUse: 'select'
     vstsFeed: '5224cc88-934d-4d8c-9915-08fefbe32aaa'
 
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: '$(solution)'
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
