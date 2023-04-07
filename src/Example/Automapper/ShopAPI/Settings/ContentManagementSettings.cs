@@ -7,6 +7,7 @@ namespace ShopAPI.Settings
     [ExcludeFromCodeCoverage]
     public class ContentManagementSettings : IContentManagementSettings
     {
+        public string AppSettingsSectionName => "contentManagementSettings";
         public string Uri { get; set; }
     }
 }

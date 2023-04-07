@@ -9,7 +9,7 @@ namespace ShopAPI.Settings
     {
         public string Database { get; set; }
 
-        public string AppSettingsSectionName => "ConnectionStrings";
+        public string AppSettingsSectionName => "connectionStrings";
     }
 }
 

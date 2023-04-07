@@ -8,8 +8,8 @@ namespace ShopAPI.Settings
     public class ApplicationSettings : IApplicationSettings
     {
         public ITenantSettings[] Tenants { get; set; } = Array.Empty<TenantSettings>();
-        public IConnectionStrings connectionStrings { get; set; } = new ConnectionStringsSettings();
         public IOktaServiceToUserSettings[] oktaServiceToUserSettings { get; set; } = Array.Empty<OktaServiceToUserSettings>();
+        public IConnectionStrings connectionStrings { get; set; } = new ConnectionStringsSettings();
         public IContentManagementSettings contentManagementSettings { get; set; } = new ContentManagementSettings();
     }
 }

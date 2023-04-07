@@ -13,7 +13,7 @@ namespace ShopAPI.Settings
         public string ApplicationSecret { get; set; }
         public string TokenURL { get; set; }
 
-        public string AppSettingsSectionName => "OktaServiceToUser";
+        public string AppSettingsSectionName => "oktaServiceToUserSettings";
     }
 }
 

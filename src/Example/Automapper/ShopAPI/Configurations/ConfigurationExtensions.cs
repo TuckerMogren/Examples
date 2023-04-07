@@ -18,9 +18,12 @@ namespace ShopAPI.Configurations
 
 			var applicationSettings = new ApplicationSettings();
 
-			config.Bind(applicationSettings);
+			var test = applicationSettings;
 
-			return applicationSettings;
+			config.Bind(applicationSettings);
+            config.Bind(applicationSettings.Tenants);
+
+            return applicationSettings;
 		}
 	}
 }

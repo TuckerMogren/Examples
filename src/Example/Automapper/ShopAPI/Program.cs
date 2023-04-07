@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 var config = new ConfigurationBuilder()
-    .AddUserSecrets<Program>()
+    //.AddUserSecrets<Program>()
     .AddEnvironmentVariables()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -15,6 +15,7 @@ var applicationSettings = config.AsApplicationSettings();
 builder.Services.AddControllers();
 
 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureVersioning();
@@ -23,6 +24,7 @@ builder.Services.ConfigureData(config);
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureAutoMapper();
 builder.Services.ConfigureMediatR();
+builder.Services.ConfigureApplicationSettings(applicationSettings);
 builder.Services.AddOktaAuthentication(applicationSettings);
 
 builder.Services.AddLogging(builder =>
