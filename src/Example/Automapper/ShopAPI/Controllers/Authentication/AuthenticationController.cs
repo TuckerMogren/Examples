@@ -13,6 +13,7 @@ namespace ShopAPI.Authentication.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[AllowAnonymous]
 public class AuthenticationController : ControllerBase
 {
     private readonly ILogger<AuthenticationController> _logger;

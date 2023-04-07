@@ -40,9 +40,11 @@ public class EmployeeController : ControllerBase
 
         if(emp == null)
         {
+            _logger.LogCritical("EmployeeDTO is Null");
             return BadRequest();
         }
 
+        _logger.LogInformation("The full name of the employee being added is: " + emp.FullName);
         var data = _config.GetConnectionString("Data");
 
 
