@@ -1,7 +1,7 @@
 name: Build and deploy ASP.Net Core app to an Azure Web App
 env:
   AZURE_WEBAPP_NAME: 'ShopAPIs'
-  AZURE_WEBAPP_PACKAGE_PATH: 'src/Example/Automapper'
+  AZURE_WEBAPP_PACKAGE_PATH: 'myapp'
   DOTNET_VERSION: '7.0.*'
   SOLUTION_PATH: 'src/Example/Automapper/TestForAutoMapperAndAdapters.sln'
   AZURE_WEBAPP_SLOT_NAME: 'development'
@@ -55,6 +55,5 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-          #slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           resource-group: ${{ env.AZURE_RESOURCE_GROUP }}
