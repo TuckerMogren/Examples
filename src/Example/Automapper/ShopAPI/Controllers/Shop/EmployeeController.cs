@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ShopAPI.Shop.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/Shop/[controller]")]
 public class EmployeeController : ControllerBase
 {
 
@@ -45,8 +45,6 @@ public class EmployeeController : ControllerBase
         }
 
         _logger.LogInformation("The full name of the employee being added is: " + emp.FullName);
-        var data = _config.GetConnectionString("Data");
-
 
         var savecmd = new SaveNewEmployeeCommand(emp);
         await _mediatr.Send(savecmd, cancellationToken);
