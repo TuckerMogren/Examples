@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ShopAPI.Shop.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/Shop/[controller]")]
 public class EmployeeController : ControllerBase
 {
 
@@ -40,11 +40,11 @@ public class EmployeeController : ControllerBase
 
         if(emp == null)
         {
+            _logger.LogCritical("EmployeeDTO is Null");
             return BadRequest();
         }
 
-        var data = _config.GetConnectionString("Data");
-
+        _logger.LogInformation("The full name of the employee being added is: " + emp.FullName);
 
         var savecmd = new SaveNewEmployeeCommand(emp);
         await _mediatr.Send(savecmd, cancellationToken);
