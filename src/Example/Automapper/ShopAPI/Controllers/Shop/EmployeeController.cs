@@ -34,6 +34,7 @@ public class EmployeeController : ControllerBase
 
 
     [HttpPost("AddEmployee")]
+    [Authorize]
     public async Task<ActionResult> AddEmployee([FromBody] EmployeeDTO emp, CancellationToken cancellationToken = default)
     {
         

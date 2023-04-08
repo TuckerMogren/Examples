@@ -107,3 +107,13 @@
 /Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/obj/Debug/net7.0/ShopAPI.pdb
 /Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/obj/Debug/net7.0/ShopAPI.genruntimeconfig.cache
 /Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/obj/Debug/net7.0/ref/ShopAPI.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/JsonSubTypes.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/Okta.AspNet.Abstractions.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/Okta.AspNetCore.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/Okta.Sdk.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/Okta.Sdk.Abstractions.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/Polly.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/RestSharp.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/System.Interactive.Async.dll
+/Users/tuckermogren/Projects/Example.Automapper/src/Example/Automapper/ShopAPI/bin/Debug/net7.0/System.Linq.Async.dll
