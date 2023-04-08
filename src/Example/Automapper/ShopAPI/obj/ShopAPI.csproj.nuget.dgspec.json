@@ -264,6 +264,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -380,6 +384,14 @@
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[13.18.2, )"
+            },
+            "Okta.AspNetCore": {
+              "target": "Package",
+              "version": "[4.4.2, )"
+            },
+            "Okta.Sdk": {
+              "target": "Package",
+              "version": "[6.0.7, )"
             },
             "Serilog": {
               "target": "Package",
