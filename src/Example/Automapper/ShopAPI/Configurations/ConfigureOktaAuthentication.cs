@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Domain.Interfaces.Settings;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -21,28 +22,25 @@ namespace ShopAPI.Configurations
 			var tenants = appSettings.Tenants;
 
 
-			string defaultScheme = tenants.LastOrDefault().TenantName;
+			string defaultScheme = tenants.TenantName;
 
-			var defaultTenant = tenants.FirstOrDefault(x => x.IsDefaultScheme);
+			var defaultTenant = tenants.TenantName;
 
 			if(defaultTenant != null)
 			{
-				defaultScheme = defaultTenant.TenantName;
+				defaultScheme = defaultTenant;
 			}
 
 			AuthenticationBuilder builder = services.AddAuthentication(defaultScheme);
 
-			foreach(var tenant in tenants)
+			builder.AddJwtBearer(tenants.TenantName, options =>
 			{
-				builder.AddJwtBearer(tenant.TenantName, options =>
-				{
-					options.Authority = tenant.Authority;
-					options.Audience = tenant.Audience;
-					options.RequireHttpsMetadata = false;
-				});
-			}
+				options.Authority = tenants.Authority;
+				options.Audience = tenants.Audience;
+				options.RequireHttpsMetadata = false;
+			});
 
-			string[] authenticationSchemes = tenants.Select(x => x.TenantName).ToArray();
+			string authenticationSchemes = tenants.TenantName;
 
 			services.AddAuthorization(options => {
 				options.DefaultPolicy = new AuthorizationPolicyBuilder(authenticationSchemes)

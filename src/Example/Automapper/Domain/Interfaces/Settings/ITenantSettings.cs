@@ -1,6 +1,6 @@
 ﻿namespace Domain.Interfaces.Settings
 {
-    public interface ITenantSettings : ICustomSettings
+    public interface ITenantSettings
     {
         string Authority { get; }
         string Audience { get; }

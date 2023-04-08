@@ -8,15 +8,14 @@ namespace ShopAPI.Settings
     [DebuggerDisplay("{TenantName}|{Authority}")]
     public class TenantSettings : ITenantSettings
     {
-        public string Authority { get;  }
+        public string Authority { get; set; }
 
-        public string Audience { get;  }
+        public string Audience { get; set; }
 
-        public bool IsDefaultScheme { get; }
+        public bool IsDefaultScheme { get; set; }
 
-        public string TenantName { get;  }
+        public string TenantName { get; set; }
 
-        public string AppSettingsSectionName => "Tenants";
     }
 }
 

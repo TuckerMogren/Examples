@@ -21,7 +21,7 @@ namespace ShopAPI.Configurations
 			var test = applicationSettings;
 
 			config.Bind(applicationSettings);
-            config.Bind(applicationSettings.Tenants);
+
 
             return applicationSettings;
 		}

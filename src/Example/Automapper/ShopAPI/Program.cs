@@ -4,13 +4,17 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 var config = new ConfigurationBuilder()
-    //.AddUserSecrets<Program>()
+    .AddUserSecrets<Program>()
     .AddEnvironmentVariables()
     .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    //.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .Build();
 
+
+
+
 var applicationSettings = config.AsApplicationSettings();
+builder.Services.ConfigureApplicationSettings(applicationSettings);
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -19,12 +23,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureVersioning();
-builder.Services.ConfigureSwagger();
 builder.Services.ConfigureData(config);
+builder.Services.ConfigureSwagger();
+
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureAutoMapper();
 builder.Services.ConfigureMediatR();
-builder.Services.ConfigureApplicationSettings(applicationSettings);
 builder.Services.AddOktaAuthentication(applicationSettings);
 
 builder.Services.AddLogging(builder =>
