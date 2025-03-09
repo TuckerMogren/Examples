@@ -7,10 +7,17 @@ public class Person(string Name, int Age) : BaseEntity
     public bool IsAlive { get; set; } = true;
 }
 
-public class Child(string Name, int Age) : Person(Name, Age)
+public class Child(string Name, int Age, List<Adult> Parents) : Person(Name, Age)
 {
-    public bool IsStillChild { get; set; }
-    private readonly List<Adult> _parents = [];
+    private bool _isStillChild = true;
+
+    public bool IsStillChild 
+    {
+        get => _isStillChild;
+        set => _isStillChild = value;
+    }
+
+    private readonly List<Adult> _parents = Parents;
 
     public void AddParent(Adult adult)
     {
@@ -21,6 +28,12 @@ public class Child(string Name, int Age) : Person(Name, Age)
     {
         return _parents.FirstOrDefault(p => p.Id == parentId);
     }
+
+    protected void RemoveParent(Adult Parent)
+    {
+        _parents.Remove(Parent); 
+    }
+
 }
 
 public class Adult(string Name, int Age) : Person(Name, Age)
@@ -28,7 +41,8 @@ public class Adult(string Name, int Age) : Person(Name, Age)
     protected Guid? SpouseId { get; set; }
     public string? Occupation { get; set; } = string.Empty;
     public bool HasChildren => _children.Count != 0;
-    private List<Child> _children = [];
+    public bool HasSpouse => SpouseId != null;
+    private readonly List<Child> _children = [];
 
     public void AddChild(Child child)
     {
