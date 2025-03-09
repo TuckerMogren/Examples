@@ -1,7 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddUserSecrets(typeof(Program).Assembly)
+    .AddEnvironmentVariables();
+
+var configuration = builder.Configuration;
+
 builder.Services.AddEndpointsApiExplorer();
 
 
