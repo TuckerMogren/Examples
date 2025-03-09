@@ -41,17 +41,23 @@ public class Adult(string Name, int Age) : Person(Name, Age)
     }
 
     /// <summary>
-    /// No Polygamy allowed, I applogize.
+    /// No Polygamy allowed, I applogize. Will set the spouse Id in both spouses by just calling one.
     /// </summary>
     /// <param name="SpouseId"></param>
     public void AddSpouse(Adult Spouse)
     {
         this.SpouseId = Spouse.Id;
+        Spouse.SpouseId = this.Id;
     }
 
-    public void RemoveSpouse()
+    /// <summary>
+    /// Will divorce for both spouses.
+    /// </summary>
+    /// <param name="Spouse"></param>
+    public void RemoveSpouse(Adult Spouse)
     {
         this.SpouseId = null;
+        Spouse.SpouseId = null;
     }
 }
 
