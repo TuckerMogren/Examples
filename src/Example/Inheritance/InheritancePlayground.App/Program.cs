@@ -1,4 +1,5 @@
-﻿using InheritancePlayground.Domain; 
+﻿using InheritancePlayground.domain.Household.People;
+using InheritancePlayground.Domain; 
 public partial class Program
 {
     private static void Main(string[] args)

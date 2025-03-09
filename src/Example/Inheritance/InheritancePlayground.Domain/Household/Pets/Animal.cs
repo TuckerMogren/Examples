@@ -1,8 +1,10 @@
-// Animal.cs
-namespace InheritancePlayground.Domain;
+using InheritancePlayground.domain.Household;
 
-public class Animal : BaseEntity
+namespace InheritancePlayground.Domain.Household.Pets
 {
-    public string Species { get; set; } = string.Empty;
-    public int Age { get; set; }
+    public class Animal : BaseEntity
+    {
+        public string Species { get; set; } = string.Empty;
+        public int Age { get; set; }
+    }
 }
