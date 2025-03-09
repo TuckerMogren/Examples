@@ -1,5 +1,4 @@
-// BaseEntity.cs
-namespace InheritancePlayground.domain.Household
+namespace InheritancePlayground.Application.Household
 {
     using System;
 

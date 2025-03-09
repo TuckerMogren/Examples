@@ -1,6 +1,4 @@
-using InheritancePlayground.domain.Household;
-
-namespace InheritancePlayground.Domain.Household.Pets
+namespace InheritancePlayground.Application.Household.Pets
 {
     public class Animal : BaseEntity
     {

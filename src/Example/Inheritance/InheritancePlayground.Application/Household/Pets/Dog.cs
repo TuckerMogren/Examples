@@ -1,5 +1,4 @@
-// Dog.cs
-namespace InheritancePlayground.Domain.Household.Pets
+namespace InheritancePlayground.Application.Household.Pets
 {
     public class Dog : Animal
     {

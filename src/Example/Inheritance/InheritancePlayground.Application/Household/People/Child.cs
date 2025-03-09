@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace InheritancePlayground.domain.Household.People
+namespace InheritancePlayground.Application.Household.People
 {
     public class Child : Person
     {

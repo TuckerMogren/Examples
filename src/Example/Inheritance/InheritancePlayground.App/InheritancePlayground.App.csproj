@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="../InheritancePlayground.Application/InheritancePlayground.Application.csproj" />
     <ProjectReference Include="..\InheritancePlayground.Domain\InheritancePlayground.Domain.csproj" />
   </ItemGroup>
 

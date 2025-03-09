@@ -1,4 +1,4 @@
-namespace InheritancePlayground.domain.Household.People
+namespace InheritancePlayground.Application.Household.People
 {
     public class Person(string Name, int Age) : BaseEntity
     {
