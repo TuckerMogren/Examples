@@ -8,6 +8,5 @@ public partial class Program
         Mom.AddSpouse(Dad);
         var Son = new Child("Tom", 3, new List<Adult>{Mom, Dad});
 
-
     }
 }
