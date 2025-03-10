@@ -1,4 +1,5 @@
 using InheritancePlayground.Application.Adapters.Household.People;
+using InheritancePlayground.Services.Config;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,14 @@ builder.Configuration
 
 var configuration = builder.Configuration;
 
+// Configure AutoMapper
+var mapperConfig = AutomapperConfig.ConfigureAutomapper();
+var mapper = mapperConfig.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
+
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -32,7 +41,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
-
+app.UseHttpsRedirection();
+app.Run();
 app.UseCors(); 
 
 
