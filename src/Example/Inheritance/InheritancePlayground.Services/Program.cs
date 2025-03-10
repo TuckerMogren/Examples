@@ -34,12 +34,30 @@ app.Use(async (context, next) =>
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsProduction())
 {
-    app.UseSwagger(); // Ensure OpenAPI JSON is generated
-    app.UseReDoc(c =>
+    app.UseSwagger(); // Ensure OpenAPI JSON is available
+
+    // Serve Rapidoc UI at `/docs`
+    app.Use(async (context, next) =>
     {
-        c.RoutePrefix = "docs"; // API documentation available at `/docs`
-        c.DocumentTitle = "API Documentation";
-        c.SpecUrl("/swagger/v1/swagger.json"); // Ensure Swagger JSON is loaded
+        if (context.Request.Path == "/docs")
+        {
+            context.Response.ContentType = "text/html";
+            await context.Response.WriteAsync(@"
+                <!DOCTYPE html>
+                <html>
+                <head><title>API Documentation</title></head>
+                <body>
+                    <rapi-doc 
+                        spec-url='/swagger/v1/swagger.json' 
+                        theme='dark' 
+                        render-style='read'>
+                    </rapi-doc>
+                    <script src='https://unpkg.com/rapidoc/dist/rapidoc-min.js'></script>
+                </body>
+                </html>");
+            return;
+        }
+        await next();
     });
 }
 
