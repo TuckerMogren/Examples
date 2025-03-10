@@ -1,5 +1,4 @@
-
-namespace InheritancePlayground.Application.Household.People
+namespace InheritancePlayground.Application.Adapters.Household.People
 {
 
     public class Adult(string Name, int Age) : Person(Name, Age)

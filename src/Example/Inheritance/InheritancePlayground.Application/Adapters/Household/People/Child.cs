@@ -1,4 +1,4 @@
-namespace InheritancePlayground.Application.Household.People
+namespace InheritancePlayground.Application.Adapters.Household.People
 {
     public class Child : Person
     {

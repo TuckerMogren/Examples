@@ -1,3 +1,6 @@
+using InheritancePlayground.Application.Household.People;
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
@@ -63,6 +66,11 @@ if (!app.Environment.IsProduction())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/greet/{name}", (string name) => $"Hello, {name}!");
+app.MapGet("/person", () =>
+{
+    var person = new Adult("Tucker", 30);
+    var json = JsonConvert.SerializeObject(person, Formatting.Indented);
+    return Results.Json(json);
+});
 
 app.Run();

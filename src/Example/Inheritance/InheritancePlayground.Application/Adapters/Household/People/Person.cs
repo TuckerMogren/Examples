@@ -1,7 +1,8 @@
 using System.Collections.ObjectModel;
-using InheritancePlayground.Application.Household.House;
+using InheritancePlayground.Application.Adapters.Household;
+using InheritancePlayground.Application.Adapters.Household.House;
 
-namespace InheritancePlayground.Application.Household.People
+namespace InheritancePlayground.Application.Adapters.Household.People
 {
     public class Person(string name, int age) : BaseEntity
     {

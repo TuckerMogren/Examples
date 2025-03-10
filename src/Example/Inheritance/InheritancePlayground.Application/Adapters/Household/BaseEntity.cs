@@ -1,4 +1,4 @@
-namespace InheritancePlayground.Application.Household
+namespace InheritancePlayground.Application.Adapters.Household
 {
     using System;
 
