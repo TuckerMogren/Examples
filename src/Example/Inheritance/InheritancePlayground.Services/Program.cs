@@ -1,7 +1,17 @@
-using InheritancePlayground.Application.Household.People;
+using InheritancePlayground.Application.Adapters.Household.People;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -23,21 +33,27 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Redirect root to ReDoc
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path == "/")
-    {
-        context.Response.Redirect("/docs");
-        return;
-    }
-    await next();
-});
+app.UseCors(); 
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsProduction())
 {
     app.UseSwagger(); // Ensure OpenAPI JSON is available
+
+
+    // Redirect root to ReDoc
+    app.Use(async (context, next) =>
+    {
+        if (context.Request.Path == "/")
+        {
+            context.Response.Redirect("/docs");
+            return;
+        }
+        await next();
+    });
+
 
     // Serve Rapidoc UI at `/docs`
     app.Use(async (context, next) =>
@@ -52,7 +68,7 @@ if (!app.Environment.IsProduction())
                 <body>
                     <rapi-doc 
                         spec-url='/swagger/v1/swagger.json' 
-                        theme='dark' 
+                        theme='light' 
                         render-style='read'>
                     </rapi-doc>
                     <script src='https://unpkg.com/rapidoc/dist/rapidoc-min.js'></script>
@@ -62,6 +78,9 @@ if (!app.Environment.IsProduction())
         }
         await next();
     });
+
+
+
 }
 
 app.UseHttpsRedirection();
@@ -69,8 +88,7 @@ app.UseHttpsRedirection();
 app.MapGet("/person", () =>
 {
     var person = new Adult("Tucker", 30);
-    var json = JsonConvert.SerializeObject(person, Formatting.Indented);
-    return Results.Json(json);
+    return Results.Json(person);
 });
 
 app.Run();
