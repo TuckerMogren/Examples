@@ -4,5 +4,5 @@ namespace InheritancePlayground.Domain.Interfaces;
 
 public interface IChild : ISessionBase
 {
-
+    string Name { get; }
 }
