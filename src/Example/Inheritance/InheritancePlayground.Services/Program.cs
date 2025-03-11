@@ -1,5 +1,6 @@
 using InheritancePlayground.Application.Adapters.Household.People;
 using InheritancePlayground.Services.Config;
+using InheritancePlayground.Services.MinimalApi;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,13 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+    });
+
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -27,8 +35,6 @@ var mapperConfig = AutomapperConfig.ConfigureAutomapper();
 var mapper = mapperConfig.CreateMapper();
 
 builder.Services.AddSingleton(mapper);
-
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -94,10 +100,6 @@ if (!app.Environment.IsProduction())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/person", () =>
-{
-    var person = new Adult("Tucker", 30);
-    return Results.Json(person);
-});
+app.MapSessionEndpoints();
 
 app.Run();

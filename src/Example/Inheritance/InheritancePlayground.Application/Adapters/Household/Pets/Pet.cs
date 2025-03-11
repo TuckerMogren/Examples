@@ -2,7 +2,7 @@ using System;
 
 namespace InheritancePlayground.Application.Adapters.Household.Pets;
 
-public class Pet : Animal
+public class Pet(string Name, int Age) : Animal ( Age)
 {
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; } = Name;
 }
