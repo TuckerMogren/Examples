@@ -1,4 +1,4 @@
-using InheritancePlayground.Application.Adapters.Household.People;
+using AutoMapper;
 using InheritancePlayground.Services.Config;
 using InheritancePlayground.Services.MinimalApi;
 using Newtonsoft.Json;
